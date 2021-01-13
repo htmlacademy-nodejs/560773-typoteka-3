@@ -6,8 +6,8 @@
   "scripts": {
     "test": "npm run eslint",
     "eslint": "eslint --ext .js src/",
-    "start": "node ./src/service/service.js --generate 10",
-    "start-chrome": "node --inspect-brk ./src/service/service.js --generate 10"
+    "start": "node ./src/service/service.js",
+    "start-chrome": "node --inspect-brk ./src/service/service.js"
   },
   "repository": {
     "type": "git",

@@ -19,27 +19,27 @@ const {
   CATEGORIES
 } = require(`./generate.data`);
 
-const _descrLength = DESCRIPTIONS.length;
-const _announceLength = _descrLength > MAX_ANNOUNCE_COUNT ? MAX_ANNOUNCE_COUNT : _descrLength;
-const _curDate = new Date();
-let _oldDate = new Date(_curDate);
-_oldDate.setMonth(_oldDate.getMonth() - 3);
+const descrLength = DESCRIPTIONS.length;
+const announceLength = descrLength > MAX_ANNOUNCE_COUNT ? MAX_ANNOUNCE_COUNT : descrLength;
+const curDate = new Date();
+let oldDate = new Date(curDate);
+oldDate.setMonth(oldDate.getMonth() - 3);
 
-const _getRandomObjects = (dataArray, count) => {
+const getRandomObjects = (dataArray, count) => {
   return shuffle(dataArray).slice(0, count);
 };
 
-const _getRandomDate = () => {
-  return new Date(getRandomInt(_oldDate, _curDate));
+const getRandomDate = () => {
+  return new Date(getRandomInt(oldDate, curDate));
 };
 
 const generatePosts = (count) => (
   Array(count).fill({}).map(() => ({
     title: TITLES[getRandomInt(0, TITLES.length - 1)],
-    createDate: _getRandomDate(),
-    announce: _getRandomObjects(DESCRIPTIONS, getRandomInt(0, _announceLength)).join(` `),
-    fullText: _getRandomObjects(DESCRIPTIONS, getRandomInt(_announceLength, _descrLength)).join(` `),
-    category: _getRandomObjects(CATEGORIES, getRandomInt(0, _descrLength - 1)),
+    createDate: getRandomDate(),
+    announce: getRandomObjects(DESCRIPTIONS, getRandomInt(0, announceLength)).join(` `),
+    fullText: getRandomObjects(DESCRIPTIONS, getRandomInt(announceLength, descrLength)).join(` `),
+    category: getRandomObjects(CATEGORIES, getRandomInt(0, descrLength - 1)),
   }))
 );
 
